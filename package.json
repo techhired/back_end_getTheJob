@@ -1,0 +1,41 @@
+{
+  "name": "back_end_getthejob",
+  "version": "1.0.0",
+  "description": "Back end for Get The Job. Get the job is an app to search tech jobs within a given area.",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "jest": "^24.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^5.1.4",
+    "mongoose": "^5.5.14",
+    "mongoose-schema-jsonschema": "^1.2.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1",
+    "require-directory": "^2.1.1",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test-watch": "jest --watchAll",
+    "test": "jest --coverage",
+    "dbOn": "mkdir -p ./db && mongod --dbpath ./db",
+    "dbOff": "killall mongod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techhired/back_end_getTheJob.git"
+  },
+  "author": "Erik M. Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/techhired/back_end_getTheJob/issues"
+  },
+  "homepage": "https://github.com/techhired/back_end_getTheJob#readme"
+}
