@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "Back end for Get The Job. Get the job is an app to search tech jobs within a given area.",
   "main": "index.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "cors": {
+    "headers": "Access-Control-Allow-Credentials",
+    "credentials": true
+  },
   "dependencies": {
     "bcrypt": "^3.0.6",
     "cors": "^2.8.5",
