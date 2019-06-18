@@ -5,6 +5,7 @@ import * as mongoose from "mongoose";
  * Mongoose
  */
 const User = require('./users-model');
+const noteSchema = require('./noteSchema');
 const Schema = mongoose.Schema;
 
 /** jobsSchema variable
@@ -12,16 +13,17 @@ const Schema = mongoose.Schema;
  * @type {mongoose.Schema}
  */
 const jobSchema = new Schema({
-  jobTitle: string,
-  location: string,
-  summary: string,
+  jobTitle: {type:String},
+  location: {type:String},
+  summary: {type:String},
   date: {type:Date, default:Date.now()},
-  url: string,
-  creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  url: {type:String},
+  // creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  notes: [noteSchema]
 });
 
 
 /**
- * Exports userJobSchema for use outside of this file.
+ * Exports jobSchema for use outside of this file.
  */
 module.exports = mongoose.model('savedJob', jobSchema);
