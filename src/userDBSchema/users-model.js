@@ -20,7 +20,7 @@ require('dotenv').config();
 const user = new mongoose.Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
-  savedjobs: [jobSchema]
+  // savedjobs: [jobSchema]
 });
 
 /** Hashes given password. */
