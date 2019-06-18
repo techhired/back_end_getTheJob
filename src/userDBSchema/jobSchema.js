@@ -19,7 +19,7 @@ const jobSchema = new mongoose.Schema({
   date: {type:Date, default:Date.now()},
   url: {type:String},
   // creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  notes: [noteSchema]
+  // notes: [noteSchema]
 });
 
 
