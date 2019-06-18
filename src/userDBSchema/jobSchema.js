@@ -1,18 +1,18 @@
-import * as mongoose from "mongoose";
+'use strict';
 
 /** DEPENDENCIES
  * ../auth/user model.js
  * Mongoose
  */
+const mongoose = require('mongoose');
 const User = require('./users-model');
 const noteSchema = require('./noteSchema');
-const Schema = mongoose.Schema;
 
 /** jobsSchema variable
  * Creates 'savedJob' as a new mongo schema, and defines types for jobTitle, location, summary, date and url.
  * @type {mongoose.Schema}
  */
-const jobSchema = new Schema({
+const jobSchema = new mongoose.Schema({
   jobTitle: {type:String},
   location: {type:String},
   summary: {type:String},
