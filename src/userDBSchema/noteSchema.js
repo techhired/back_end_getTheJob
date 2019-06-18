@@ -1,19 +1,19 @@
-import * as mongoose from "mongoose";
+'use strict';
 
 /** DEPENDENCIES
  * ./jobSchema.js
  * Mongoose
  */
 
+const mongoose = require('mongoose');
 const Job = require('./jobSchema');
-const Schema = mongoose.Schema;
 
 /** notesSchema variable
  * Creates 'savedNotes' as a new mongo schema, and defines types for noteTitle, summary, and date.
  * @type {mongoose.Schema}
  */
 
-const noteSchema = new Schema({
+const noteSchema = new mongoose.Schema({
   noteTitle: {type:String},
   summary: {type:String},
   date: {type:Date, default:Date.now()},
