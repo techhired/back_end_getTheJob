@@ -6,7 +6,7 @@
 
 const express = require('express');
 const authRouter = express.Router();
-const User = require('./users-model');
+const User = require('../userDBSchema/users-model');
 const auth = require('./middleware');
 
 /** POST methods for SignUp and SignIn */

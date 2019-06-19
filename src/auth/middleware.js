@@ -1,7 +1,7 @@
 'use strict';
 
 /** Single Dependency - user model */
-const User = require('./users-model');
+const User = require('../userDBSchema/users-model');
 
 /** Most of this middleware file is exported for use in the rest of the project. */
 module.exports = (req, res, next) => {
