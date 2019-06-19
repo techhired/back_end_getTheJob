@@ -9,7 +9,7 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const jobSchema = require('./jobSchema');
+// const testJobs = require('./jobSchema');
 
 require('dotenv').config();
 
@@ -20,6 +20,14 @@ require('dotenv').config();
 const user = new mongoose.Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
+  jobSchema: [{
+    organization: {type: String},
+    title: {type:String},
+    location: {type:String},
+    summary: {type:String},
+    date: {type:Date, default:Date.now()},
+    url: {type:String}
+  }]
   // savedjobs: [jobSchema]
 });
 
@@ -69,4 +77,31 @@ user.methods.generateToken = function() {
 /**
  * Exports user-model for use outside of this file.
  */
-module.exports = mongoose.model('User', user);
+let newUser = mongoose.model('User', user);
+
+
+let testUser = new newUser({username:'fred', password: '123', jobSchema:[{organization: 'Army'}]});
+
+
+// testUser = {jobSchema: [{organization: 'Navy'}]};
+// testUser.runCommand(
+//     {
+//       insert: "jobSchema",
+//       documents: [ {organization: 'Navy'} ]
+//     }
+// )
+newUser.update(
+    {_id: 5d09af637920d64a2418305c},
+    {$addToSet: {jobSchema: [{organization: 'Navy'}]}}
+)
+
+// testUser.jobSchema.push(testJobs);
+
+// testUser.save(function (err, job) {
+//   if (err) return console.error(err);
+//   console.log(job.jobTitle + " saved to job collection.");
+// });
+
+
+
+module.exports = newUser;

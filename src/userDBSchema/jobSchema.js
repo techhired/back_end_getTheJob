@@ -18,6 +18,7 @@ const jobSchema = new mongoose.Schema({
   summary: {type:String},
   date: {type:Date, default:Date.now()},
   url: {type:String},
+  users: [{ type: mongoose.Schema.ObjectId, ref: 'user' }]
   // creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   // notes: [noteSchema]
 });
@@ -26,4 +27,16 @@ const jobSchema = new mongoose.Schema({
 /**
  * Exports jobSchema for use outside of this file.
  */
-module.exports = mongoose.model('savedJob', jobSchema);
+let jobModel = mongoose.model('savedJob', jobSchema);
+
+let testJobs = new jobModel({title: 'mechanic', location: 'Tacoma', summary: 'fixing cars'});
+// let testUser = new User({username:'sarkis', password: 'password'});
+//
+// testUser.jobSchema.push(testJobs);
+//
+// testUser.save(function (err, job) {
+//   if (err) return console.error(err);
+//   console.log(job.jobTitle + " saved to job collection.");
+// });
+
+module.exports = testJobs;
