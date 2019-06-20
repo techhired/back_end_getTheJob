@@ -9,7 +9,7 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const jobSchema = require('./jobSchema');
+const Jobs = require('./jobSchema');
 
 require('dotenv').config();
 
@@ -70,38 +70,39 @@ userSchema.methods.generateToken = function() {
 /**
  * Exports user-model for use outside of this file.
  */
-let Jobs = mongoose.model('Jobs', jobSchema);
+let User = mongoose.model('User', userSchema);
 
 
-const testUser = new userSchema({
-  _id: new mongoose.Types.ObjectId(),
-  username:'Carl',
-   password: '123'
-});
-
-// let testJobs = new Jobs({
+// const testUser = new User({
+//   _id: mongoose.Types.ObjectId(),
+//   username:'Sarkis',
+//    password: 'abc'
+// });
+//
+// let testJobs1 = new Jobs({
 //   title: 'mechanic',
 //   location: 'Tacoma',
 //   summary: 'fixing cars',
 // });
-
- const testJobs2 = new Jobs({
-  title: 'doctor',
-  location: 'Seattle',
-  summary: 'healing',
-  user: testUser._id
-});
-
-
-// testUser.jobs.push(testJobs2);
-
-testUser.save()
-testJobs2.save()
-
-User.findOne({username: 'Carl'})
-    .populate('jobs')
-    .exec((error, jobs) => {
-      console.log(jobs)
-    })
+//
+//  const testJobs2 = new Jobs({
+//   title: 'pilot',
+//   location: 'New York',
+//   summary: 'flying',
+//   user: testUser._id
+// });
+//
+//
+// testUser.jobs.push(testJobs1, testJobs2);
+//
+// testUser.save()
+// testJobs1.save()
+// testJobs2.save()
+//
+// User.findOne({username: 'Sarkis'})
+//     .populate('jobs')
+//     .exec((error, jobs) => {
+//       console.log(jobs)
+//     })
 
 module.exports = User;

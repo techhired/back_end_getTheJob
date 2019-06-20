@@ -13,6 +13,7 @@ const noteSchema = require('./noteSchema');
  * @type {mongoose.Schema}
  */
 const jobSchema = new mongoose.Schema({
+  user : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   organization: {type: String},
   jobTitle: {type:String},
   location: {type:String},
