@@ -14,10 +14,14 @@ const Job = require('./jobSchema');
  */
 
 const noteSchema = new mongoose.Schema({
-  noteTitle: {type:String},
+  user : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  organization: {type: String},
+  jobTitle: {type:String},
+  location: {type:String},
   summary: {type:String},
   date: {type:Date, default:Date.now()},
-  // creator: { type: mongoose.Schema.ObjectId, ref: 'savedJob', required: true }
+  url: {type:String},
+  users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 /**

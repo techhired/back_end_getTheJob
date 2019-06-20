@@ -5,31 +5,35 @@
  */
 
 const express = require('express');
-const noteRoutes = express.Router();
-const Jobs = require('../userDBSchema/jobSchema');
+const noteRouter = express.Router();
+const Notes = require('../userDBSchema/noteSchema');
 
-noteRoutes.post('/save', (req, res, next) => {
-  let note = new Jobs(req.body);
+noteRouter.post('/save', (req, res, next) => {
+  let note = new Notes(req.body);
+  console.log(req.body)
   return note.save()
     .then(savedNotes => {
-      res.status(200).json({'savedNotes': 'savedNotes added successfully'});
+      console.log(savedNotes)
+      res.status(200).json({'savedNotes': 'notes saved'});
     })
     .catch(err => {
       res.status(400).send('saving the Note failed');
     }).catch(next);
 });
 
-noteroutes.get('/signin', auth, (req, res, next) => {
-  note.find(function(error, savedNotes) {
-    if (error){
-      console.log(error);
-    } else {
-      res.json(savedNotes);
-    }
-  });
-});
+// noteRoutes.get('/signin', auth, (req, res, next) => {
+//   note.find(function(error, savedNotes) {
+//     if (error){
+//       console.log(error);
+//     } else {
+//       res.json(savedNotes);
+//     }
+//   });
+// });
+//
+// noteroutes.delete('/signin', auth, (req, res, next) => {
+//
+//
+// });
 
-noteroutes.delete('/signin', auth, (req, res, next) => {
-
-
-});
+module.exports = noteRouter;

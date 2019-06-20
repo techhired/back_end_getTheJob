@@ -7,7 +7,21 @@
 const express = require('express');
 const authRouter = express.Router();
 const User = require('../userDBSchema/users-model');
+const Job = require('../userDBSchema/jobSchema')
 const auth = require('./middleware');
+
+
+authRouter.route('/').get((req, res) => {// to retrieve all users info
+    Job.find(function(err, jobs) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.json(jobs)
+        }
+    })
+});
+
 
 /** POST methods for SignUp and SignIn */
 authRouter.post('/signup', (req, res, next) => {
