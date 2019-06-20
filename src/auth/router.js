@@ -27,7 +27,7 @@ authRouter.route('/').get((req, res) => {// to retrieve all users info
 authRouter.post('/signup', (req, res, next) => {
 
   let user = new User(req.body);
-console.log(user)
+  console.log(user);
   return user.save()
     .then(user => {
       req.token = user.generateToken();

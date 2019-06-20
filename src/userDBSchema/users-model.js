@@ -7,6 +7,7 @@
  * Dotenv
  */
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Jobs = require('./jobSchema');
@@ -17,11 +18,10 @@ require('dotenv').config();
  * Creates 'user' as a new mongo schema, and defines types for username and password.
  * @type {mongoose.Schema}
  */
-const userSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+const userSchema = new Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
-  jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Jobs' }]
+  jobs: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }]
 });
 
 /** Hashes given password. */
@@ -70,6 +70,7 @@ userSchema.methods.generateToken = function() {
 /**
  * Exports user-model for use outside of this file.
  */
+
 let User = mongoose.model('User', userSchema);
 
 
@@ -104,5 +105,36 @@ let User = mongoose.model('User', userSchema);
 //     .exec((error, jobs) => {
 //       console.log(jobs)
 //     })
+=======
+let Jobs = mongoose.model('Jobs', jobSchema);
+let User = mongoose.model('User', userSchema);
+
+
+const testUser = new User({
+  username:'Carl',
+   password: '123'
+});
+
+ const testJobs2 = new Jobs({
+  title: 'doctor',
+  location: 'Seattle',
+  summary: 'healing',
+  user: testUser._id
+});
+const testJobs3 = new Jobs({
+  title: 'mechanic',
+  location: 'Seattle',
+  summary: 'fix',
+  user: testUser._id
+});
+
+
+testUser.jobs.push(testJobs2);
+testUser.jobs.push(testJobs3);
+
+testUser.save();
+testJobs2.save();
+testJobs3.save();
+
 
 module.exports = User;
