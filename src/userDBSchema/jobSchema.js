@@ -13,30 +13,21 @@ const noteSchema = require('./noteSchema');
  * @type {mongoose.Schema}
  */
 const jobSchema = new mongoose.Schema({
+  organization: {type: String},
   jobTitle: {type:String},
   location: {type:String},
   summary: {type:String},
   date: {type:Date, default:Date.now()},
   url: {type:String},
-  users: [{ type: mongoose.Schema.ObjectId, ref: 'user' }]
-  // creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-  // notes: [noteSchema]
+  users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 
 /**
  * Exports jobSchema for use outside of this file.
  */
-let jobModel = mongoose.model('savedJob', jobSchema);
+// let Jobs = mongoose.model('Jobs', jobSchema);
 
-let testJobs = new jobModel({title: 'mechanic', location: 'Tacoma', summary: 'fixing cars'});
-// let testUser = new User({username:'sarkis', password: 'password'});
-//
-// testUser.jobSchema.push(testJobs);
-//
-// testUser.save(function (err, job) {
-//   if (err) return console.error(err);
-//   console.log(job.jobTitle + " saved to job collection.");
-// });
 
-module.exports = testJobs;
+
+module.exports = jobSchema;

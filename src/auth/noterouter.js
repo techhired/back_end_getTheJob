@@ -5,18 +5,18 @@
  */
 
 const express = require('express');
-const noteroutes = express.Router();
-const Note = require('../userDBSchema/noteSchema');
+const noteRoutes = express.Router();
+const Jobs = require('../userDBSchema/jobSchema');
 
-noteroutes.post('/save', (req, res, next) => {
-  let note = new Note(req.body);
+noteRoutes.post('/save', (req, res, next) => {
+  let note = new Jobs(req.body);
   return note.save()
     .then(savedNotes => {
       res.status(200).json({'savedNotes': 'savedNotes added successfully'});
     })
     .catch(err => {
       res.status(400).send('saving the Note failed');
-    });
+    }).catch(next);
 });
 
 noteroutes.get('/signin', auth, (req, res, next) => {

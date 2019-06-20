@@ -9,7 +9,7 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const testJobs = require('./jobSchema');
+const jobSchema = require('./jobSchema');
 
 require('dotenv').config();
 
@@ -17,22 +17,15 @@ require('dotenv').config();
  * Creates 'user' as a new mongo schema, and defines types for username and password.
  * @type {mongoose.Schema}
  */
-const user = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
-  jobSchema: [{
-    organization: {type: String},
-    title: {type:String},
-    location: {type:String},
-    summary: {type:String},
-    date: {type:Date, default:Date.now()},
-    url: {type:String}
-  }]
-  // savedjobs: [jobSchema]
+  jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Jobs' }]
 });
 
 /** Hashes given password. */
-user.pre('save', function(next) {
+userSchema.pre('save', function(next) {
   bcrypt.hash(this.password,10)
     .then(hashedPassword => {
       this.password = hashedPassword;
@@ -45,7 +38,7 @@ user.pre('save', function(next) {
  * @param auth - compares username with what's in Schema
  * @returns {boolean|*} - calls comparePassword function to verify password
  */
-user.statics.authenticateBasic = function(auth) {
+userSchema.statics.authenticateBasic = function(auth) {
   let query = {username:auth.username};
   return this.findOne(query)
     .then(user => user && user.comparePassword(auth.password))
@@ -57,7 +50,7 @@ user.statics.authenticateBasic = function(auth) {
  * @param password - given password
  * @returns {*} - uses bcrypt to compare the this.password with what's in the Schema
  */
-user.methods.comparePassword = function(password) {
+userSchema.methods.comparePassword = function(password) {
   return bcrypt.compare(password, this.password)
     .then(valid => valid ? this : null);
 };
@@ -66,7 +59,7 @@ user.methods.comparePassword = function(password) {
  * Function that generates a token and assigns it to an _id in the Schema
  * @returns {*} - uses jsonwebtoken to sign the tokenData and salts it with our .env file's SECRET
  */
-user.methods.generateToken = function() {
+userSchema.methods.generateToken = function() {
   let tokenData = {
     id: this._id,
   };
@@ -77,31 +70,38 @@ user.methods.generateToken = function() {
 /**
  * Exports user-model for use outside of this file.
  */
-let newUser = mongoose.model('User', user);
+let Jobs = mongoose.model('Jobs', jobSchema);
 
 
-let testUser = new newUser({username:'fred', password: '123', jobSchema:[{organization: 'Army'}]});
+const testUser = new userSchema({
+  _id: new mongoose.Types.ObjectId(),
+  username:'Carl',
+   password: '123'
+});
 
-
-// testUser = {jobSchema: [{organization: 'Navy'}]};
-// testUser.runCommand(
-//     {
-//       insert: "jobSchema",
-//       documents: [ {organization: 'Navy'} ]
-//     }
-// )
-newUser.update(
-    {_id: 5d09af637920d64a2418305c},
-    {$addToSet: {jobSchema: [{organization: 'Navy'}]}}
-)
-
-// testUser.jobSchema.push(testJobs);
-
-// testUser.save(function (err, job) {
-//   if (err) return console.error(err);
-//   console.log(job.jobTitle + " saved to job collection.");
+// let testJobs = new Jobs({
+//   title: 'mechanic',
+//   location: 'Tacoma',
+//   summary: 'fixing cars',
 // });
 
+ const testJobs2 = new Jobs({
+  title: 'doctor',
+  location: 'Seattle',
+  summary: 'healing',
+  user: testUser._id
+});
 
 
-module.exports = newUser;
+// testUser.jobs.push(testJobs2);
+
+testUser.save()
+testJobs2.save()
+
+User.findOne({username: 'Carl'})
+    .populate('jobs')
+    .exec((error, jobs) => {
+      console.log(jobs)
+    })
+
+module.exports = User;
