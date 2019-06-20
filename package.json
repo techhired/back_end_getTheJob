@@ -24,6 +24,7 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "require-directory": "^2.1.1",
+    "superagent": "^5.0.7",
     "supertest": "^4.0.2"
   },
   "devDependencies": {},

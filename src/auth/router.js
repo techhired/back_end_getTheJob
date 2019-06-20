@@ -6,14 +6,14 @@
 
 const express = require('express');
 const authRouter = express.Router();
-const User = require('./users-model');
+const User = require('../userDBSchema/users-model');
 const auth = require('./middleware');
 
 /** POST methods for SignUp and SignIn */
 authRouter.post('/signup', (req, res, next) => {
 
   let user = new User(req.body);
-
+console.log(user)
   return user.save()
     .then(user => {
       req.token = user.generateToken();
