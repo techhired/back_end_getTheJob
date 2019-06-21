@@ -14,9 +14,8 @@ const mongoose = require('mongoose');
  */
 
 const noteSchema = new mongoose.Schema({
-  user : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   organization: {type: String},
-  jobTitle: {type:String},
+  title: {type:String},
   location: {type:String},
   summary: {type:String},
   date: {type:Date, default:Date.now()},
@@ -27,4 +26,6 @@ const noteSchema = new mongoose.Schema({
 /**
  * Exports noteSchema for use outside of this file.
  */
-module.exports = mongoose.model('savedNotes', noteSchema);
+let Notes =  mongoose.model('Notes', noteSchema);
+
+module.exports = Notes;
