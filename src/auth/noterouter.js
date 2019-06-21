@@ -10,25 +10,25 @@ const Notes = require('../userDBSchema/noteSchema');
 const auth = require('../auth/middleware');
 const User = require('../userDBSchema/users-model');
 
-noteRouter.post('/save/:username', (req, res, next) => {
+noteRouter.post('/save/:username', async (req, res, next) => {
     let note = new Notes(req.body);
-    User.update(
-        { username: `${req.params.username}`},
-        {$push: {'$.notes': {title: 5}}}
-    )
+    note.save()
 
-    //     .exec(function(err, note) {
-    //     console.log(note);
-    // });
+    User.find({username:`${req.params.username}`})
+        .populate('notes')
+        .exec(function(err, user) {
+            if (err) console.log(err);
+            user[0].notes.push(note)
+            user[0].save()
 
-    return note.save()
-        .then(savedNotes => {
-            console.log(savedNotes)
-            res.status(200).json({'savedNotes': 'notes saved'});
+                .then(() => {
+                    res.status(200).json('saving the Note succeeded');
+                })
+                .catch(err => {
+                    res.status(400).send('saving the Note failed');
+                }).catch(next);
+
         })
-        .catch(err => {
-            res.status(400).send('saving the Note failed');
-        }).catch(next);
 });
 
 
