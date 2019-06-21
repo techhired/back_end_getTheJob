@@ -11,7 +11,6 @@ module.exports = (req, res, next) => {
    */
   try {
     let [authType, encodedString] = req.headers.authorization.split(/\s+/);
-
     switch (authType.toLowerCase()) {
       case 'basic':
         return _authBasic(encodedString);
@@ -30,7 +29,6 @@ module.exports = (req, res, next) => {
    * @private
    */
   function _authBasic(authString) {
-
     let base64Buffer = Buffer.from(authString, 'base64');
     let bufferString = base64Buffer.toString();
     let [username, password] = bufferString.split(':');

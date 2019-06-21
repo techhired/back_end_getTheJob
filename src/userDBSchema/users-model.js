@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const Jobs = require('./jobSchema');
+const Notes = require('./noteSchema');
 
 require('dotenv').config();
 
@@ -21,7 +21,7 @@ require('dotenv').config();
 const userSchema = new Schema({
   username: {type:String, required:true, unique:true},
   password: {type:String, required:true},
-  jobs: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }]
+  notes: [{ type: Schema.Types.ObjectId, ref: 'Notes' }]
 });
 
 /** Hashes given password. */
@@ -105,36 +105,6 @@ let User = mongoose.model('User', userSchema);
 //     .exec((error, jobs) => {
 //       console.log(jobs)
 //     })
-=======
-let Jobs = mongoose.model('Jobs', jobSchema);
-let User = mongoose.model('User', userSchema);
-
-
-const testUser = new User({
-  username:'Carl',
-   password: '123'
-});
-
- const testJobs2 = new Jobs({
-  title: 'doctor',
-  location: 'Seattle',
-  summary: 'healing',
-  user: testUser._id
-});
-const testJobs3 = new Jobs({
-  title: 'mechanic',
-  location: 'Seattle',
-  summary: 'fix',
-  user: testUser._id
-});
-
-
-testUser.jobs.push(testJobs2);
-testUser.jobs.push(testJobs3);
-
-testUser.save();
-testJobs2.save();
-testJobs3.save();
 
 
 module.exports = User;
