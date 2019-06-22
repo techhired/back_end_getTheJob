@@ -25,7 +25,7 @@ const userSchema = new Schema({
   notes: [{ type: Schema.Types.ObjectId, ref: 'Notes' }]
 });
 
-/** Hashes given password. */
+/** Hashes given password.*/
 userSchema.pre('save', function(next) {
   bcrypt.hash(this.password,10)
     .then(hashedPassword => {

@@ -4,14 +4,12 @@
  * ./jobSchema.js
  * Mongoose
  */
-
 const mongoose = require('mongoose');
 
 /** notesSchema variable
  * Creates 'savedNotes' as a new mongo schema, and defines types for noteTitle, summary, and date.
  * @type {mongoose.Schema}
  */
-
 const noteSchema = new mongoose.Schema({
   organization: {type: String},
   title: {type:String},
