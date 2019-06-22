@@ -1,16 +1,15 @@
-# Back End JobberWocky
-A software technology job search app
+![CF](./assets/iconmonstr-handshake-8-240.png) Back End JobberWocky - a Job Search App
 ==============================================
 
 ### JobberWocky
-![Build Status]()
+![Build Status](https://travis-ci.com/Tonytrip3/lab-3.svg?branch=master)
 
-### Author: Sarkis, Lorin, Erik, Xochil, and Anthony
+### Author: Anthony, Erik, Lorin, Sarkis, and Xochil
 
 ### Links and Resources
 * [repo](https://github.com/techhired/back_end_getTheJob)
-* [travis]()
-* [Heroku]()
+* [travis](https://travis-ci.com/erikmjohnson/back_end_getTheJob)
+* [Heroku](https://get-the-job-backend.herokuapp.com/)
 
 ___
 ## Web Application
@@ -90,7 +89,6 @@ ___
 
 #### `noterouter.js`
 * `/save` -> saves the note to the job for later reference
-* `/retrieve` -> finds the saved note to the job for the front-end
 
 #### `router.js`
 * `/` -> the landing route for our web page
@@ -135,4 +133,3 @@ ___
 
 #### Tests
  To run tests, please use the `npm run test` command.
-
