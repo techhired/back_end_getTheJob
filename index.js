@@ -4,11 +4,10 @@
  * Mongoose
  * Dotenv
  */
-
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-
+/** Defines our options for the mongoose database*/
 const options = {
   useNewUrlParser: true,
   useCreateIndex: true,

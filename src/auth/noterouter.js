@@ -3,7 +3,6 @@
 /** NODE PACKAGES
  * Express
  */
-
 const express = require('express');
 const noteRouter = express.Router();
 const Notes = require('../userDBSchema/noteSchema');
@@ -32,4 +31,5 @@ noteRouter.post('/save/:username', async (req, res, next) => {
 });
 
 
+/** Exports noteRouter for use outside of this file.*/
 module.exports = noteRouter;

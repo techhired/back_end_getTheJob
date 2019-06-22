@@ -4,7 +4,6 @@
  * ./jobSchema.js
  * Mongoose
  */
-
 const mongoose = require('mongoose');
 // const Job = require('./jobSchema');
 
@@ -12,7 +11,6 @@ const mongoose = require('mongoose');
  * Creates 'savedNotes' as a new mongo schema, and defines types for noteTitle, summary, and date.
  * @type {mongoose.Schema}
  */
-
 const noteSchema = new mongoose.Schema({
   organization: {type: String},
   title: {type:String},

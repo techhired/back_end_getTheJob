@@ -25,7 +25,7 @@ const userSchema = new Schema({
   notes: [{ type: Schema.Types.ObjectId, ref: 'Notes' }]
 });
 
-/** Hashes given password. */
+/** Hashes given password.*/
 userSchema.pre('save', function(next) {
   bcrypt.hash(this.password,10)
     .then(hashedPassword => {
@@ -106,6 +106,5 @@ let User = mongoose.model('User', userSchema);
 //     .exec((error, jobs) => {
 //       console.log(jobs)
 //     })
-
 
 module.exports = User;
