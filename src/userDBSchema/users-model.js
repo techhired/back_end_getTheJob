@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const Notes = require('./noteSchema');
+const Note = require('./noteSchema');
 
 require('dotenv').config();
 
@@ -67,11 +67,8 @@ userSchema.methods.generateToken = function() {
   return jwt.sign(tokenData, process.env.SECRET || 'test');
 };
 
-
-/**
- * Exports user-model for use outside of this file.
- */
-
+/** Sets our schema as a model sub-type of the document type in mongoose*/
 let User = mongoose.model('User', userSchema);
 
+/** Exports user-model for use outside of this file.*/
 module.exports = User;

@@ -29,11 +29,3 @@ jobroutes.get('/retrieve', auth, (req, res, next) => {
     }
   });
 });
-
-
-///** removes the selected job from the user's profile*/
-// jobroutes.delete('/remove', auth, (req, res, next) => {
-//
-//
-// });
-

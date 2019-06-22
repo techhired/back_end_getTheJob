@@ -1,7 +1,6 @@
 'use strict';
 
 /** DEPENDENCIES
- * ./jobSchema.js
  * Mongoose
  */
 const mongoose = require('mongoose');
@@ -20,9 +19,8 @@ const noteSchema = new mongoose.Schema({
   users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
-/**
- * Exports noteSchema for use outside of this file.
- */
+/** Sets our schema as a model sub-type of the document type in mongoose*/
 let Notes =  mongoose.model('Notes', noteSchema);
 
+/** Exports noteSchema for use outside of this file.*/
 module.exports = Notes;
