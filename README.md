@@ -2,7 +2,7 @@
 ==============================================
 
 ### JobberWocky
-![Build Status](https://travis-ci.com/Tonytrip3/lab-3.svg?branch=master)
+![Build Status](https://travis-ci.com/erikmjohnson/back_end_getTheJob.svg?branch=development)
 
 ### Author: Anthony, Erik, Lorin, Sarkis, and Xochil
 
