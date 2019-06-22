@@ -3,7 +3,7 @@ A software technology job search app
 ==============================================
 
 ### JobberWocky
-[![Build Status]()
+![Build Status]()
 
 ### Author: Sarkis, Lorin, Erik, Xochil, and Anthony
 
