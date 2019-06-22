@@ -3,7 +3,7 @@ A software technology job search app
 ==============================================
 
 ### JobberWocky
-[![Build Status]()
+![Build Status]()
 
 ### Author: Sarkis, Lorin, Erik, Xochil, and Anthony
 
@@ -135,3 +135,4 @@ ___
 
 #### Tests
  To run tests, please use the `npm run test` command.
+

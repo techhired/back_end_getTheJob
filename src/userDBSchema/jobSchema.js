@@ -5,8 +5,6 @@
  * Mongoose
  */
 const mongoose = require('mongoose');
-// const User = require('./users-model');
-// const noteSchema = require('./noteSchema');
 
 /** jobsSchema variable
  * Creates 'savedJob' as a new mongo schema, and defines types for jobTitle, location, summary, date and url.
