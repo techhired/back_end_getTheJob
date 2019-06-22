@@ -6,7 +6,10 @@
 const express = require('express');
 const authRouter = express.Router();
 const User = require('../userDBSchema/users-model');
+<<<<<<< HEAD
+=======
 const Job = require('../userDBSchema/jobSchema');
+>>>>>>> development
 const auth = require('./middleware');
 
 /** the landing route for our web page*/
