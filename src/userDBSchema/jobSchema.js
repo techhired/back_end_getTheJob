@@ -1,7 +1,6 @@
 'use strict';
 
 /** DEPENDENCIES
- * ../auth/user model.js
  * Mongoose
  */
 const mongoose = require('mongoose');
@@ -17,8 +16,7 @@ const jobSchema = new mongoose.Schema({
   location: {type:String},
   summary: {type:String},
   date: {type:Date, default:Date.now()},
-  url: {type:String},
-  // users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  url: {type:String}
 });
 
 /** Exports jobSchema for use outside of this file.*/
