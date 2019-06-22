@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const Notes = require('./noteSchema');
+const Note = require('./noteSchema');
 
 require('dotenv').config();
 

@@ -7,7 +7,6 @@
 const express = require('express');
 const authRouter = express.Router();
 const User = require('../userDBSchema/users-model');
-const Job = require('../userDBSchema/jobSchema')
 const auth = require('./middleware');
 
 

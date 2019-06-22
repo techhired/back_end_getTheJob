@@ -12,7 +12,7 @@ const morgan = require('morgan');
 const authRoutes = require('./auth/router');
 const errorHandler = require('./middleware/error');
 const notFound = require('./middleware/404');
-const notesRoutes = require('./auth/noterouter')
+const notesRoutes = require('./auth/noterouter');
 
 /** Running app middleware */
 const app = express();
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(authRoutes);
-app.use(notesRoutes)
+app.use(notesRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
