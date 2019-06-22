@@ -5,16 +5,15 @@
  * Mongoose
  */
 const mongoose = require('mongoose');
-const Job = require('./jobSchema');
+// const Job = require('./jobSchema');
 
 /** notesSchema variable
  * Creates 'savedNotes' as a new mongo schema, and defines types for noteTitle, summary, and date.
  * @type {mongoose.Schema}
  */
 const noteSchema = new mongoose.Schema({
-  user : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   organization: {type: String},
-  jobTitle: {type:String},
+  title: {type:String},
   location: {type:String},
   summary: {type:String},
   date: {type:Date, default:Date.now()},
@@ -25,4 +24,6 @@ const noteSchema = new mongoose.Schema({
 /**
  * Exports noteSchema for use outside of this file.
  */
-module.exports = mongoose.model('savedNotes', noteSchema);
+let Notes =  mongoose.model('Notes', noteSchema);
+
+module.exports = Notes;
