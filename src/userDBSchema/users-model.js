@@ -24,7 +24,7 @@ const userSchema = new Schema({
   jobs: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }]
 });
 
-/** Hashes given password. */
+/** Hashes given password.*/
 userSchema.pre('save', function(next) {
   bcrypt.hash(this.password,10)
     .then(hashedPassword => {
@@ -66,75 +66,5 @@ userSchema.methods.generateToken = function() {
   return jwt.sign(tokenData, process.env.SECRET || 'test');
 };
 
-
-/**
- * Exports user-model for use outside of this file.
- */
-
-let User = mongoose.model('User', userSchema);
-
-
-// const testUser = new User({
-//   _id: mongoose.Types.ObjectId(),
-//   username:'Sarkis',
-//    password: 'abc'
-// });
-//
-// let testJobs1 = new Jobs({
-//   title: 'mechanic',
-//   location: 'Tacoma',
-//   summary: 'fixing cars',
-// });
-//
-//  const testJobs2 = new Jobs({
-//   title: 'pilot',
-//   location: 'New York',
-//   summary: 'flying',
-//   user: testUser._id
-// });
-//
-//
-// testUser.jobs.push(testJobs1, testJobs2);
-//
-// testUser.save()
-// testJobs1.save()
-// testJobs2.save()
-//
-// User.findOne({username: 'Sarkis'})
-//     .populate('jobs')
-//     .exec((error, jobs) => {
-//       console.log(jobs)
-//     })
-=======
-let Jobs = mongoose.model('Jobs', jobSchema);
-let User = mongoose.model('User', userSchema);
-
-
-const testUser = new User({
-  username:'Carl',
-   password: '123'
-});
-
- const testJobs2 = new Jobs({
-  title: 'doctor',
-  location: 'Seattle',
-  summary: 'healing',
-  user: testUser._id
-});
-const testJobs3 = new Jobs({
-  title: 'mechanic',
-  location: 'Seattle',
-  summary: 'fix',
-  user: testUser._id
-});
-
-
-testUser.jobs.push(testJobs2);
-testUser.jobs.push(testJobs3);
-
-testUser.save();
-testJobs2.save();
-testJobs3.save();
-
-
+/** Exports user-model for use outside of this file.*/
 module.exports = User;

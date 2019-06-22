@@ -3,11 +3,11 @@
 /** NODE PACKAGES
  * Express
  */
-
 const express = require('express');
 const jobroutes = express.Router();
 const Job = require('../userDBSchema/jobSchema');
 
+/** saves the job to the user's profile for later checking*/
 jobroutes.post('/save', (req, res, next) => {
   let job = new Job(req.body);
   return job.save()
@@ -19,7 +19,8 @@ jobroutes.post('/save', (req, res, next) => {
     });
 });
 
-jobroutes.get('/signin', auth, (req, res, next) => {
+/** finds all saved jobs to the user's profile for the front-end*/
+jobroutes.get('/retrieve', auth, (req, res, next) => {
   job.find(function(error, savedJobs) {
     if (error){
       console.log(error);
@@ -29,7 +30,8 @@ jobroutes.get('/signin', auth, (req, res, next) => {
   });
 });
 
-jobroutes.delete('/signin', auth, (req, res, next) => {
-
-
-});
+///** removes the selected job from the user's profile*/
+// jobroutes.delete('/remove', auth, (req, res, next) => {
+//
+//
+// });

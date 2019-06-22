@@ -12,7 +12,6 @@ const mongoose = require('mongoose');
  * Creates 'savedJob' as a new mongo schema, and defines types for jobTitle, location, summary, date and url.
  * @type {mongoose.Schema}
  */
-
 const jobSchema = new mongoose.Schema({
   user : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   organization: {type: String},
@@ -24,12 +23,5 @@ const jobSchema = new mongoose.Schema({
   // users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
-
-/**
- * Exports jobSchema for use outside of this file.
- */
-// let Jobs = mongoose.model('Jobs', jobSchema);
-
-
-
+/** Exports jobSchema for use outside of this file.*/
 module.exports = jobSchema;
