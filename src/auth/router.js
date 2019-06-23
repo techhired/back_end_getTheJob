@@ -9,7 +9,7 @@ const User = require('../userDBSchema/users-model');
 const auth = require('./middleware');
 
 /** the landing route for our web page*/
-authRouter.route('/').get((req, res) => {// to retrieve all the landing page info
+authRouter.route('/').get((req, res) => {
   Job.find(function(err, jobs) {
     if(err) {
       console.log(err);
