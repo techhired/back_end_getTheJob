@@ -4,4 +4,4 @@ node_js:
 script:
   - jest signup-in.test.js
   - jest middleware.test.js
-  - jest supergoose.js
+  
